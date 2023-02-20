@@ -9,24 +9,11 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
 |
 */
 
-Route::get('listOrderByUser/{userId}', 'App\Http\Controllers\OrderManagermentRestController@listOrderByUser');
-Route::get('getOrderById/{orderId}', 'App\Http\Controllers\OrderManagermentRestController@getOrderById');
-Route::get('getOrderByState/{status}', 'App\Http\Controllers\OrderManagermentRestController@getOrderByStatus');
-Route::post('UpdateOrderStatus/{orderId}', 'App\Http\Controllers\OrderManagermentRestController@updateOrderStatus');
-Route::post('createNewOrder', 'App\Http\Controllers\OrderManagermentRestController@createNewOrder');
-
-// Route::get('listOrderByUser/{userId}', 'App\Http\Controllers\OrderManagermentRestController@listOrderByUser');
-
-Route::post('rate-comment/{orderId}', 'App\Http\Controllers\OrderManagermentRestController@rateComment');
-Route::post('/save-order/{userId}','App\Http\Controllers\OrderManagermentRestController@saveOrder');
-Route::get('/create-order/{userId}','App\Http\Controllers\OrderManagermentRestController@createOrder');
-
-
-
-Route::get('/listOrder', 'App\Http\Controllers\OrderManagermentRestController@listOrder');
-Route::get('/listOrderByStatus/{status}', 'App\Http\Controllers\OrderManagementController@listOrderByStatus');
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
